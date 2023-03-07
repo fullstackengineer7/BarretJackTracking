@@ -81,7 +81,8 @@ License: For each use you must have a valid license purchased only from above li
 						<!--begin::Body-->
 						<div class="py-20">
 							<!--begin::Form-->
-							<form class="form w-100" novalidate="novalidate" id="kt_sign_up_form" data-kt-redirect-url="../../demo1/dist/authentication/layouts/fancy/sign-in.html" action="{{ route('sign-up') }}">
+							<form class="form w-100" novalidate="novalidate" method="post" action="{{ route('sign-up') }}"> 
+								<!-- // id="kt_sign_up_form" -->
 								@csrf
 								<!--begin::Heading-->
 								<div class="text-start mb-10">
@@ -149,13 +150,10 @@ License: For each use you must have a valid license purchased only from above li
 								<div class="d-flex flex-stack">
 									<!--begin::Submit-->
 									<button  type="submit" id="kt_sign_up_submit" class="btn btn-primary" data-kt-translate="sign-up-submit">
-										<!--begin::Indicator label-->
 										<span class="indicator-label">Submit</span>
-										<!--end::Indicator label-->
-										<!--begin::Indicator progress-->
-										<span class="indicator-progress">Please wait...
-										<span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
-										<!--end::Indicator progress-->
+										
+										<!-- <span class="indicator-progress">Please wait...
+										<span class="spinner-border spinner-border-sm align-middle ms-2"></span></span> -->
 									</button>
 									<!--end::Submit-->								
 								</div>

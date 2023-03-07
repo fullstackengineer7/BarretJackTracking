@@ -22,7 +22,7 @@ return new class extends Migration
             $table->unsignedInteger('total_leads')->default(0);
             $table->unsignedInteger('con_leads')->default(0); //Convereted Leads
             $table->float('conversion')->default(0);
-            $table->timestamps('created')->useCurrent();
+            $table->datetime('created_at');
         });
     }
 

@@ -76,19 +76,10 @@ License: For each use you must have a valid license purchased only from above li
 									<!--begin::Login options-->
 									<div class="row g-3 mb-9">
 										<!--begin::Col-->
-										<div class="col-md-6">
+										<div class="col-md-12">
 											<!--begin::Google link=-->
 											<a href="#" class="btn btn-flex btn-outline btn-text-gray-700 btn-active-color-primary bg-state-light flex-center text-nowrap w-100">
 											<img alt="Logo" src="{{ asset('assets/media/svg/brand-logos/google-icon.svg') }}" class="h-15px me-3" />Sign in with Google</a>
-											<!--end::Google link=-->
-										</div>
-										<!--end::Col-->
-										<!--begin::Col-->
-										<div class="col-md-6">
-											<!--begin::Google link=-->
-											<a href="#" class="btn btn-flex btn-outline btn-text-gray-700 btn-active-color-primary bg-state-light flex-center text-nowrap w-100">
-											<img alt="Logo" src="assets/media/svg/brand-logos/apple-black.svg" class="theme-light-show h-15px me-3" />
-											<img alt="Logo" src="assets/media/svg/brand-logos/apple-black-dark.svg" class="theme-dark-show h-15px me-3" />Sign in with Apple</a>
 											<!--end::Google link=-->
 										</div>
 										<!--end::Col-->
@@ -123,13 +114,9 @@ License: For each use you must have a valid license purchased only from above li
 									<!--begin::Submit button-->
 									<div class="d-grid mb-10">
 										<button type="submit" id="kt_sign_in_submit" class="btn btn-primary">
-											<!--begin::Indicator label-->
 											<span class="indicator-label">Sign In</span>
-											<!--end::Indicator label-->
-											<!--begin::Indicator progress-->
 											<span class="indicator-progress">Please wait...
 											<span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
-											<!--end::Indicator progress-->
 										</button>
 									</div>
 									<!--end::Submit button-->
