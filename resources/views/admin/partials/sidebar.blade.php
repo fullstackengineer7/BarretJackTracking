@@ -3423,7 +3423,7 @@
               <a href="{{ route('admin.create-new-lead') }}" class="btn btn-flex flex-center btn-custom btn-primary overflow-hidden text-nowrap px-0 h-40px w-100" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss-="click" title="200+ in-house components and 3rd-party plugins" style="margin-bottom: 5px;">
                 <span class="btn-label">Create New Lead</span>
               </a>
-              <a href="{{ route('admin.create-new-campaign') }}" class="btn btn-flex flex-center btn-custom btn-primary overflow-hidden text-nowrap px-0 h-40px w-100" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss-="click" title="200+ in-house components and 3rd-party plugins">
+              <a href="{{ route('create-new-campaign') }}" class="btn btn-flex flex-center btn-custom btn-primary overflow-hidden text-nowrap px-0 h-40px w-100" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss-="click" title="200+ in-house components and 3rd-party plugins">
                 <span class="btn-label">Create New Campaign</span>
               </a>
             </div>
