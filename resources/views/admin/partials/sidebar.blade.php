@@ -54,7 +54,7 @@
                       <!--begin:Menu item-->
                       <div class="menu-item">
                         <!--begin:Menu link-->
-                        <a class="menu-link active" href="../../demo1/dist/index.html">
+                        <a class="menu-link active" href="{{ route('home') }}">
                           <span class="menu-bullet">
                             <span class="bullet bullet-dot"></span>
                           </span>

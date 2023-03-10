@@ -28,6 +28,10 @@ class CampaignController extends Controller
         $this->us_tollfree_pri = $this->us_phone_pri->phoneNumberPrices[1]['current_price'];
     }
 
+    public function index(){
+        return view('admin/home');
+    }
+
 
     public function getUSPhonePrice(){
 
@@ -99,11 +103,13 @@ class CampaignController extends Controller
             'created_at' => date('Y-m-d H:i:s')   
         ];
         Campaign::create($data);
-        $this->show();
+        // $this->show();
+         $rows = DB::table('campaigns')->get();
+        return view('admin/campaign',['campaigns' => $rows]);
     }
 
    
-    public function show(Campaign $campaign)
+    public function show()
     {        
         $rows = DB::table('campaigns')->get();
         return view('admin/campaign',['campaigns' => $rows]);

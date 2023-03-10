@@ -19,6 +19,8 @@ Route::group(['prefix' => 'api'], function () {
     Route::post('/sign-up', [AuthController::class, 'signup'])->name('sign-up');
     Route::get('/sign-out', [AuthController::class, 'signout'])->name('sign-out');
 
+
+    Route::get('/home', [CampaignController::class, 'index'])->name('home');
     Route::get('/admin/newlead', [LeadController::class, 'create'])->name('admin.create-new-lead');
     Route::get('/newcampaign', [CampaignController::class, 'create'])->name('create-new-campaign');
     Route::get('/admin/showcampaign', [CampaignController::class, 'show'])->name('admin.show-campaign');
