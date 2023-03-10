@@ -201,7 +201,9 @@
 												<!--begin::Content-->
 												<div class="flex-lg-row-fluid me-0 me-lg-20">
 													<!--begin::Form-->
-													<form action="m-0" class="form mb-15" method="post" id="kt_careers_form">
+													<form action="{{ route('store-campaign') }}" class="form mb-15" method="post" >
+														@csrf
+														<!-- //id="kt_careers_form" -->
 														<!--begin::Input group-->
 														<div class="row mb-5">
 															<!--begin::Col-->
@@ -210,13 +212,10 @@
 																<label class="required fs-5 fw-semibold mb-2">Category</label>
 																<!--end::Label-->
 																<!--begin::Input-->
-																<select name="position" data-control="select2" data-placeholder="Select a position..." class="form-select form-select-solid">
-																	<option value="Web Developer">Web Developer</option>
-																	<option value="Web Designer">Web Designer</option>
-																	<option value="Art Director">Art Director</option>
-																	<option value="Finance Manager">Finance Manager</option>
-																	<option value="Project Manager">Project Manager</option>
-																	<option value="System Administrator">System Administrator</option>
+																<select name="category" data-control="select2" data-placeholder="Select a position..." class="form-select form-select-solid">
+																	@foreach($categories as $category)
+																	<option value="{{ $category->id }}">{{ $category->title }}</option>
+																	@endforeach
 																</select>
 																<!--end::Input-->
 															</div>
@@ -227,7 +226,7 @@
 																<label class="required fs-5 fw-semibold mb-2">Campaign Name</label>
 																<!--end::Label-->
 																<!--end::Input-->
-																<input type="text" class="form-control form-control-solid" placeholder="" name="last_name" />
+																<input type="text" class="form-control form-control-solid" placeholder="" name="title" />
 																<!--end::Input-->
 															</div>
 															<!--end::Col-->
@@ -237,12 +236,8 @@
 														<div class="row mb-5">
 															<!--begin::Col-->
 															<div class="col-md-6 fv-row">
-																<!--begin::Label-->
 																<label class="required fs-5 fw-semibold mb-2">Phone Number</label>
-																<!--end::Label-->
-																<!--begin::Input-->
-																<input class="form-control form-control-solid" placeholder="" name="email" />
-																<!--end::Input-->
+																<input class="form-control form-control-solid" placeholder="" name="phone_number" value="{{ $phone_number }}" readonly/>
 															</div>
 															<!--end::Col-->
 															<!--begin::Col-->
@@ -251,7 +246,7 @@
 																<label class="fs-5 fw-semibold mb-2">Forward To</label>
 																<!--end::Label-->
 																<!--end::Input-->
-																<input type="text" class="form-control form-control-solid" placeholder="" name="mobileno" />
+																<input type="text" class="form-control form-control-solid" placeholder="" name="forward_to" />
 																<!--end::Input-->
 															</div>
 															<!--end::Col-->
@@ -265,18 +260,18 @@
 																<label class="required fs-5 fw-semibold mb-2">Record Calls</label>
 																<!--end::Label-->
 																<!--begin::Input-->
-																<select name="position" data-control="select2" data-placeholder="Select a position..." class="form-select form-select-solid">
-																	<option value="Web Developer">Yes</option>
-																	<option value="Web Designer">No</option>Administrator</option>
+																<select name="record" data-control="select2" data-placeholder="Select a position..." class="form-select form-select-solid">
+																	<option value="1">Yes</option>
+																	<option value="0">No</option>Administrator</option>
 																</select>
 															</div>
 															<!--end::Col-->
 															<!--begin::Col-->
 															<div class="col-md-6 fv-row">
 																<label class="required fs-5 fw-semibold mb-2">Call Recording Message</label>
-																<select name="position" data-control="select2" data-placeholder="Select a position..." class="form-select form-select-solid">
-																	<option value="Web Developer">Yes</option>
-																	<option value="Web Designer">No</option>Administrator</option>
+																<select name="recording_msg" data-control="select2" data-placeholder="Select a position..." class="form-select form-select-solid">
+																	<option value="1">Yes</option>
+																	<option value="0">No</option>Administrator</option>
 																</select>
 															</div>
 															<!--end::Col-->
@@ -291,13 +286,9 @@
 															</label>
 															<!--end::Label-->
 															<!--begin::Select-->
-															<select name="position" data-control="select2" data-placeholder="Select a position..." class="form-select form-select-solid">
-																<option value="Web Developer">Web Developer</option>
-																<option value="Web Designer">Web Designer</option>
-																<option value="Art Director">Art Director</option>
-																<option value="Finance Manager">Finance Manager</option>
-																<option value="Project Manager">Project Manager</option>
-																<option value="System Administrator">System Administrator</option>
+															<select name="create_leads" data-control="select2" data-placeholder="Select a position..." class="form-select form-select-solid">
+																<option value="1">Yes</option>
+																<option value="0">No</option>
 															</select>
 															<!--end::Select-->
 														</div>
@@ -317,9 +308,9 @@
 															<!--begin::Col-->
 															<div class="col-md-6 fv-row">
 																<label class="required fs-5 fw-semibold mb-2">Whisper Message</label>
-																<select name="position" data-control="select2" data-placeholder="Select a position..." class="form-select form-select-solid">
-																	<option value="Web Developer">Yes</option>
-																	<option value="Web Designer">No</option>Administrator</option>
+																<select name="whisper_msg" data-control="select2" data-placeholder="Select a position..." class="form-select form-select-solid">
+																	<option value="1">Yes</option>
+																	<option value="0">No</option>Administrator</option>
 																</select>
 															</div>
 															<!--end::Col-->
@@ -328,17 +319,18 @@
 														<!--begin::Input group-->
 														<div class="d-flex flex-column mb-5 fv-row">
 															<label class="fs-5 fw-semibold mb-2">Advertising Cost</label>
-															<select name="position" data-control="select2" data-placeholder="Select a position..." class="form-select form-select-solid">
-																<option value="Web Developer">--None--</option>
-																<option value="Web Designer">No</option>Administrator</option>
+															<select name="ad_cost" data-control="select2" data-placeholder="Select a position..." class="form-select form-select-solid">
+															    @foreach($prices as $price)
+																<option value="{{ $price->id }}">{{ $price->price }}</option>
+																@endforeach
 															</select>
 														</div>
 														<!--end::Input group-->
 														
 														<!--begin::Submit-->
-														<button type="submit" class="btn btn-primary" id="kt_careers_submit_button">
+														<button type="submit" class="btn btn-primary" >
 															<!--begin::Indicator label-->
-															<span class="indicator-label">Apply Now</span>
+															<span class="indicator-label">Save</span>
 															<!--end::Indicator label-->
 															<!--begin::Indicator progress-->
 															<span class="indicator-progress">Please wait...

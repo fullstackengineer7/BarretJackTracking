@@ -133,7 +133,8 @@
 															<!--begin::Content-->
 															<div class="flex-lg-row-fluid me-0 me-lg-20">
 																<!--begin::Form-->
-																<form action="m-0" class="form mb-15" method="post" id="kt_careers_form">
+																<form  class="form mb-15" method="post" id="kt_careers_form" action={{ route('get-local-phones') }}>
+																	@csrf
 																	<!--begin::Input group-->
 																	<div class="row mb-5">
 																		<!--begin::Col-->
@@ -142,7 +143,7 @@
 																			<label class="required fs-5 fw-semibold mb-2">Area Code</label>
 																			<!--end::Label-->
 																			<!--begin::Input-->
-																			<input type="text" class="form-control form-control-solid" placeholder="" name="first_name" />
+																			<input type="text" class="form-control form-control-solid" placeholder="" name="area_code" />
 																			<!--end::Input-->
 																		</div>
 																		<!--end::Col-->
@@ -154,7 +155,7 @@
 																		<!--end::Col-->
 																	</div>
 																	<!--begin::Submit-->
-																	<button type="submit" class="btn btn-primary" id="kt_careers_submit_button">
+																	<button id="areacodeSubmit" class="btn btn-primary" id="kt_careers_submit_button">
 																		<!--begin::Indicator label-->
 																		<span class="indicator-label">Search</span>
 																		<!--end::Indicator label-->
@@ -206,8 +207,102 @@
 																</thead>
 																<!--end::Table head-->
 																<!--begin::Table body-->
+																<tbody id="localPhonesTable">
+																	@if(  count($localPhones) > 0 )
+																	@foreach($localPhones as $localPhone)
+																		<tr>
+																			<td>
+																				<div class="form-check form-check-sm form-check-custom form-check-solid">
+																					<input class="form-check-input widget-13-check" type="checkbox" value="1" />
+																				</div>
+																			</td>
+
+																			<td>
+																				<a href="#" class="text-dark fw-bold text-hover-primary d-block mb-1 fs-6">{{ $localPhone->friendlyName }}</a>
+																				<span class="text-muted fw-semibold text-muted d-block fs-7"></span>
+																			</td>
+																			<td>
+																				${{ $us_local_pri }}/month
+																			</td>
+																			<td>
+																				<span class="badge badge-light-success"></span>
+																			</td>
+																			<td class="text-dark fw-bold text-hover-primary fs-6">0 minutes/month</td>
+																			<td class="text-dark fw-bold text-hover-primary fs-6"></td>
+																			<td class="text-end">
+																				
+																				<a href="/api/campaign_detail/{{ $localPhone->phoneNumber }}" class="btn btn-bg-light btn-color-muted btn-active-color-primary btn-sm px-4">Register</a>
+																			</td>
+																		</tr>
+																	@endforeach
+																	@endif
+																</tbody>
+																<!--end::Table body-->
+															</table>
+															<!--end::Table-->
+														</div>
+														<!--end::Table container-->
+													</div>
+												</div>
+												<!--end::Tap pane-->
+												<!--begin::Tap pane-->
+												<div class="tab-pane fade" id="kt_list_widget_10_tab_2">
+													<!--begin::Item-->
+													<div class="m-0">
+														<!--begin::Wrapper-->
+														<div class="d-flex align-items-sm-center mb-5">
+															<h3>Toll Free Phone Numbers in USA</h3>
+														</div>
+														<!--end::Wrapper-->
+														<!--begin::Table container-->
+														<div class="table-responsive">
+															<!--begin::Table-->
+															<table class="table table-row-bordered table-row-gray-100 align-middle gs-0 gy-3">
+																<!--begin::Table head-->
+																<thead>
+																	<tr class="fw-bold text-muted">
+																		<th class="w-25px">
+																			<div class="form-check form-check-sm form-check-custom form-check-solid">
+																				<input class="form-check-input" type="checkbox" value="1" data-kt-check="true" data-kt-check-target=".widget-13-check" />
+																			</div>
+																		</th>
+																		<th class="min-w-140px">Number</th>
+																		<th class="min-w-120px">Monthly Cost</th>
+																		<th class="min-w-120px">Amount Collected Today</th>
+																		<th class="min-w-120px">Included Minutes</th>
+																		<th class="min-w-120px">Average Cost</th>
+																	</tr>
+																</thead>
+																<!--end::Table head-->
+																<!--begin::Table body-->
 																<tbody>
+																	@foreach($tollFrees as $tollFree)
 																	<tr>
+																		<td>
+																			<div class="form-check form-check-sm form-check-custom form-check-solid">
+																				<input class="form-check-input widget-13-check" type="checkbox" value="1" />
+																			</div>
+																		</td>
+
+																		<td>
+																			<a href="#" class="text-dark fw-bold text-hover-primary d-block mb-1 fs-6">{{ $tollFree->friendlyName }}</a>
+																			<span class="text-muted fw-semibold text-muted d-block fs-7"></span>
+																		</td>
+																		<td>
+																			${{ $us_tollfree_pri }}/month
+																		</td>
+																		<td>
+																			<span class="badge badge-light-success"></span>
+																		</td>
+																		<td class="text-dark fw-bold text-hover-primary fs-6">0 minutes/month</td>
+																		<td class="text-dark fw-bold text-hover-primary fs-6"></td>
+																		<td class="text-end">
+																			<a href="/api/campaign_detail/{{ $tollFree->phoneNumber }}" class="btn btn-bg-light btn-color-muted btn-active-color-primary btn-sm px-4">Register</a>
+																		</td>
+																	</tr>
+																	@endforeach
+
+																	<!-- <tr>
 																		<td>
 																			<div class="form-check form-check-sm form-check-custom form-check-solid">
 																				<input class="form-check-input widget-13-check" type="checkbox" value="1" />
@@ -229,191 +324,13 @@
 																		<td class="text-end">
 																			<a href="#" class="btn btn-bg-light btn-color-muted btn-active-color-primary btn-sm px-4">Register</a>
 																		</td>
-																	</tr>
+																	</tr> -->
 																</tbody>
 																<!--end::Table body-->
 															</table>
 															<!--end::Table-->
 														</div>
 														<!--end::Table container-->
-													</div>
-												</div>
-												<!--end::Tap pane-->
-												<!--begin::Tap pane-->
-												<div class="tab-pane fade" id="kt_list_widget_10_tab_2">
-													<!--begin::Item-->
-													<div class="m-0">
-														<!--begin::Wrapper-->
-														<div class="d-flex align-items-sm-center mb-5">
-															<!--begin::Symbol-->
-															<div class="symbol symbol-45px me-4">
-																<span class="symbol-label bg-primary">
-																	<i class="text-inverse-primary fs-1 lh-0 fonticon-offline"></i>
-																</span>
-															</div>
-															<!--end::Symbol-->
-															<!--begin::Section-->
-															<div class="d-flex align-items-center flex-row-fluid flex-wrap">
-																<div class="flex-grow-1 me-2">
-																	<a href="#" class="text-gray-400 fs-6 fw-semibold">Plane Freight</a>
-																	<span class="text-gray-800 fw-bold d-block fs-4">#5635-342808</span>
-																</div>
-																<span class="badge badge-lg badge-light-success fw-bold my-2">Delivered</span>
-															</div>
-															<!--end::Section-->
-														</div>
-														<!--end::Wrapper-->
-														<!--begin::Timeline-->
-														<div class="timeline">
-															<!--begin::Timeline item-->
-															<div class="timeline-item align-items-center mb-7">
-																<!--begin::Timeline line-->
-																<div class="timeline-line w-40px mt-6 mb-n12"></div>
-																<!--end::Timeline line-->
-																<!--begin::Timeline icon-->
-																<div class="timeline-icon" style="margin-left: 11px">
-																	<!--begin::Svg Icon | path: icons/duotune/general/gen015.svg-->
-																	<span class="svg-icon svg-icon-2 svg-icon-danger">
-																		<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-																			<path opacity="0.3" d="M22 12C22 17.5 17.5 22 12 22C6.5 22 2 17.5 2 12C2 6.5 6.5 2 12 2C17.5 2 22 6.5 22 12ZM12 10C10.9 10 10 10.9 10 12C10 13.1 10.9 14 12 14C13.1 14 14 13.1 14 12C14 10.9 13.1 10 12 10ZM6.39999 9.89999C6.99999 8.19999 8.40001 6.9 10.1 6.4C10.6 6.2 10.9 5.7 10.7 5.1C10.5 4.6 9.99999 4.3 9.39999 4.5C7.09999 5.3 5.29999 7 4.39999 9.2C4.19999 9.7 4.5 10.3 5 10.5C5.1 10.5 5.19999 10.6 5.39999 10.6C5.89999 10.5 6.19999 10.2 6.39999 9.89999ZM14.8 19.5C17 18.7 18.8 16.9 19.6 14.7C19.8 14.2 19.5 13.6 19 13.4C18.5 13.2 17.9 13.5 17.7 14C17.1 15.7 15.8 17 14.1 17.6C13.6 17.8 13.3 18.4 13.5 18.9C13.6 19.3 14 19.6 14.4 19.6C14.5 19.6 14.6 19.6 14.8 19.5Z" fill="currentColor" />
-																			<path d="M16 12C16 14.2 14.2 16 12 16C9.8 16 8 14.2 8 12C8 9.8 9.8 8 12 8C14.2 8 16 9.8 16 12ZM12 10C10.9 10 10 10.9 10 12C10 13.1 10.9 14 12 14C13.1 14 14 13.1 14 12C14 10.9 13.1 10 12 10Z" fill="currentColor" />
-																		</svg>
-																	</span>
-																	<!--end::Svg Icon-->
-																</div>
-																<!--end::Timeline icon-->
-																<!--begin::Timeline content-->
-																<div class="timeline-content m-0">
-																	<!--begin::Title-->
-																	<span class="fs-6 text-gray-400 fw-semibold d-block">KLM Cargo</span>
-																	<!--end::Title-->
-																	<!--begin::Title-->
-																	<span class="fs-6 fw-bold text-gray-800">Schipol Airport, Amsterdam</span>
-																	<!--end::Title-->
-																</div>
-																<!--end::Timeline content-->
-															</div>
-															<!--end::Timeline item-->
-															<!--begin::Timeline item-->
-															<div class="timeline-item align-items-center">
-																<!--begin::Timeline line-->
-																<div class="timeline-line w-40px"></div>
-																<!--end::Timeline line-->
-																<!--begin::Timeline icon-->
-																<div class="timeline-icon" style="margin-left: 11px">
-																	<!--begin::Svg Icon | path: icons/duotune/general/gen018.svg-->
-																	<span class="svg-icon svg-icon-2 svg-icon-info">
-																		<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-																			<path opacity="0.3" d="M18.0624 15.3453L13.1624 20.7453C12.5624 21.4453 11.5624 21.4453 10.9624 20.7453L6.06242 15.3453C4.56242 13.6453 3.76242 11.4453 4.06242 8.94534C4.56242 5.34534 7.46242 2.44534 11.0624 2.04534C15.8624 1.54534 19.9624 5.24534 19.9624 9.94534C20.0624 12.0453 19.2624 13.9453 18.0624 15.3453Z" fill="currentColor" />
-																			<path d="M12.0624 13.0453C13.7193 13.0453 15.0624 11.7022 15.0624 10.0453C15.0624 8.38849 13.7193 7.04535 12.0624 7.04535C10.4056 7.04535 9.06241 8.38849 9.06241 10.0453C9.06241 11.7022 10.4056 13.0453 12.0624 13.0453Z" fill="currentColor" />
-																		</svg>
-																	</span>
-																	<!--end::Svg Icon-->
-																</div>
-																<!--end::Timeline icon-->
-																<!--begin::Timeline content-->
-																<div class="timeline-content m-0">
-																	<!--begin::Title-->
-																	<span class="fs-6 text-gray-400 fw-semibold d-block">Singapore Cargo</span>
-																	<!--end::Title-->
-																	<!--begin::Title-->
-																	<span class="fs-6 fw-bold text-gray-800">Changi Airport, Singapore</span>
-																	<!--end::Title-->
-																</div>
-																<!--end::Timeline content-->
-															</div>
-															<!--end::Timeline item-->
-														</div>
-														<!--end::Timeline-->
-													</div>
-													<!--end::Item-->
-													<!--begin::Separator-->
-													<div class="separator separator-dashed my-6"></div>
-													<!--end::Separator-->
-													<!--begin::Item-->
-													<div class="m-0">
-														<!--begin::Wrapper-->
-														<div class="d-flex align-items-sm-center mb-5">
-															<!--begin::Symbol-->
-															<div class="symbol symbol-45px me-4">
-																<span class="symbol-label bg-primary">
-																	<i class="text-inverse-primary fs-1 lh-0 fonticon-truck"></i>
-																</span>
-															</div>
-															<!--end::Symbol-->
-															<!--begin::Section-->
-															<div class="d-flex align-items-center flex-row-fluid flex-wrap">
-																<div class="flex-grow-1 me-2">
-																	<a href="#" class="text-gray-400 fs-6 fw-semibold">Truck Freight</a>
-																	<span class="text-gray-800 fw-bold d-block fs-4">#0066-954784</span>
-																</div>
-																<span class="badge badge-lg badge-light-success fw-bold my-2">Delivered</span>
-															</div>
-															<!--end::Section-->
-														</div>
-														<!--end::Wrapper-->
-														<!--begin::Timeline-->
-														<div class="timeline">
-															<!--begin::Timeline item-->
-															<div class="timeline-item align-items-center mb-7">
-																<!--begin::Timeline line-->
-																<div class="timeline-line w-40px mt-6 mb-n12"></div>
-																<!--end::Timeline line-->
-																<!--begin::Timeline icon-->
-																<div class="timeline-icon" style="margin-left: 11px">
-																	<!--begin::Svg Icon | path: icons/duotune/general/gen015.svg-->
-																	<span class="svg-icon svg-icon-2 svg-icon-danger">
-																		<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-																			<path opacity="0.3" d="M22 12C22 17.5 17.5 22 12 22C6.5 22 2 17.5 2 12C2 6.5 6.5 2 12 2C17.5 2 22 6.5 22 12ZM12 10C10.9 10 10 10.9 10 12C10 13.1 10.9 14 12 14C13.1 14 14 13.1 14 12C14 10.9 13.1 10 12 10ZM6.39999 9.89999C6.99999 8.19999 8.40001 6.9 10.1 6.4C10.6 6.2 10.9 5.7 10.7 5.1C10.5 4.6 9.99999 4.3 9.39999 4.5C7.09999 5.3 5.29999 7 4.39999 9.2C4.19999 9.7 4.5 10.3 5 10.5C5.1 10.5 5.19999 10.6 5.39999 10.6C5.89999 10.5 6.19999 10.2 6.39999 9.89999ZM14.8 19.5C17 18.7 18.8 16.9 19.6 14.7C19.8 14.2 19.5 13.6 19 13.4C18.5 13.2 17.9 13.5 17.7 14C17.1 15.7 15.8 17 14.1 17.6C13.6 17.8 13.3 18.4 13.5 18.9C13.6 19.3 14 19.6 14.4 19.6C14.5 19.6 14.6 19.6 14.8 19.5Z" fill="currentColor" />
-																			<path d="M16 12C16 14.2 14.2 16 12 16C9.8 16 8 14.2 8 12C8 9.8 9.8 8 12 8C14.2 8 16 9.8 16 12ZM12 10C10.9 10 10 10.9 10 12C10 13.1 10.9 14 12 14C13.1 14 14 13.1 14 12C14 10.9 13.1 10 12 10Z" fill="currentColor" />
-																		</svg>
-																	</span>
-																	<!--end::Svg Icon-->
-																</div>
-																<!--end::Timeline icon-->
-																<!--begin::Timeline content-->
-																<div class="timeline-content m-0">
-																	<!--begin::Title-->
-																	<span class="fs-6 text-gray-400 fw-semibold d-block">Haven van Rotterdam</span>
-																	<!--end::Title-->
-																	<!--begin::Title-->
-																	<span class="fs-6 fw-bold text-gray-800">Rotterdam, Netherlands</span>
-																	<!--end::Title-->
-																</div>
-																<!--end::Timeline content-->
-															</div>
-															<!--end::Timeline item-->
-															<!--begin::Timeline item-->
-															<div class="timeline-item align-items-center">
-																<!--begin::Timeline line-->
-																<div class="timeline-line w-40px"></div>
-																<!--end::Timeline line-->
-																<!--begin::Timeline icon-->
-																<div class="timeline-icon" style="margin-left: 11px">
-																	<!--begin::Svg Icon | path: icons/duotune/general/gen018.svg-->
-																	<span class="svg-icon svg-icon-2 svg-icon-info">
-																		<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-																			<path opacity="0.3" d="M18.0624 15.3453L13.1624 20.7453C12.5624 21.4453 11.5624 21.4453 10.9624 20.7453L6.06242 15.3453C4.56242 13.6453 3.76242 11.4453 4.06242 8.94534C4.56242 5.34534 7.46242 2.44534 11.0624 2.04534C15.8624 1.54534 19.9624 5.24534 19.9624 9.94534C20.0624 12.0453 19.2624 13.9453 18.0624 15.3453Z" fill="currentColor" />
-																			<path d="M12.0624 13.0453C13.7193 13.0453 15.0624 11.7022 15.0624 10.0453C15.0624 8.38849 13.7193 7.04535 12.0624 7.04535C10.4056 7.04535 9.06241 8.38849 9.06241 10.0453C9.06241 11.7022 10.4056 13.0453 12.0624 13.0453Z" fill="currentColor" />
-																		</svg>
-																	</span>
-																	<!--end::Svg Icon-->
-																</div>
-																<!--end::Timeline icon-->
-																<!--begin::Timeline content-->
-																<div class="timeline-content m-0">
-																	<!--begin::Title-->
-																	<span class="fs-6 text-gray-400 fw-semibold d-block">Forest-Midi</span>
-																	<!--end::Title-->
-																	<!--begin::Title-->
-																	<span class="fs-6 fw-bold text-gray-800">Brussels, Belgium</span>
-																	<!--end::Title-->
-																</div>
-																<!--end::Timeline content-->
-															</div>
-															<!--end::Timeline item-->
-														</div>
-														<!--end::Timeline-->
 													</div>
 													<!--end::Item-->
 												</div>
@@ -444,8 +361,68 @@
 	      <!--end::Page-->
     	</div>
 		<!--begin::Javascript-->
+		<script src="{{ asset('assets/js/jquery.min.js') }}"></script>		
 		@include('admin.partials.footer')
-		<!--end::Javascript-->
+	<!-- 	<script type="text/javascript">
+			$(document).ready(function(){
+				$("#areacodeSubmit").click(function(e){
+					e.preventDefault();					
+					let area_code = $('#area-code').val();
+			        $.ajaxSetup({
+			            headers: {
+			                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+			            }
+			        });
+
+			        let row = "";
+			        let i = 0;
+			        let localPhones;
+					$.post({ 
+		                url:'/api/getLocalPhones',
+		                data:{ area_code: area_code },
+		                success: function(result){
+		                    if(result.status === true){
+		                          	console.log(result.localPhones);
+		                          	localPhones = result.localPhones;
+			                       	for( i = 0  ; i < localPhones.length; i++){
+				      					row += "<tr>"
+										row += "<td>"
+											row += "<div class='form-check form-check-sm form-check-custom form-check-solid'>"
+												row += "<input class='form-check-input widget-13-check' type='checkbox' value='1' />"
+											row += "</div>"
+										row += "</td>"
+										row += "<td>"
+											row += "<a href='#' class='text-dark fw-bold text-hover-primary d-block mb-1 fs-6'>"
+											row += localPhones[i]->friendlyName + "</a>"
+											row += "<span class='text-muted fw-semibold text-muted d-block fs-7'>GA</span>"
+										row += "</td>"
+										row += "<td>"
+											row += "<a href='#' class='text-dark fw-bold text-hover-primary fs-6'>$1.50/month</a>"
+										row += "</td>"
+										row += "<td>"
+											row += "<span class='badge badge-light-success'>$0.50</span>"
+										row += "</td>"
+										row += "<td class='text-dark fw-bold text-hover-primary fs-6'>0 minutes/month</td>"
+										row += "<td class='text-dark fw-bold text-hover-primary fs-6'>$0.03/month</td>"
+										row += "<td class='text-end'>"
+											row += "<a href='#' class='btn btn-bg-light btn-color-muted btn-active-color-primary btn-sm px-4'>Register</a>"
+										row += "</td>"
+										row += "</tr>"
+									    
+									    $("#localPhonesTable").append(row);
+									    row = "";
+			                       	}    
+									console.log(row);
+
+		                    } else {
+		                        
+		                    }
+		                }                 
+		            });
+				});
+			});
+
+		</script> -->
 	</body>
 	<!--end::Body-->
 </html>

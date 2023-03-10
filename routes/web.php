@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\LeadController;
 use App\Http\Controllers\CampaignController;
+use App\Http\Controllers\BuyPhoneController;
 
 Route::get('/{path?}', function () {
     return view('admin/auth/sign-in');
@@ -21,8 +22,11 @@ Route::group(['prefix' => 'api'], function () {
     Route::get('/admin/newlead', [LeadController::class, 'create'])->name('admin.create-new-lead');
     Route::get('/newcampaign', [CampaignController::class, 'create'])->name('create-new-campaign');
     Route::get('/admin/showcampaign', [CampaignController::class, 'show'])->name('admin.show-campaign');
-    Route::get('/admin/campaign-detail', [CampaignController::class, 'detail'])->name('admin.campaign-detail');
-    
+    Route::get('/campaign_detail/{phone_number}', [CampaignController::class, 'detail'])->name('campaign-detail');
+    Route::post('/getLocalPhones', [CampaignController::class, 'getLocalPhones'])->name('get-local-phones');
+    Route::get('/get-countries', [BuyPhoneController::class, 'getCountries'])->name('get-countries');
+    Route::post('/store-campaign' , [CampaignController::class, 'store'])->name('store-campaign');
+
     // Route::get('/admin-signup', [AuthController::class, 'showAdminRegister'])->name('admin.signup');
     // Route::post('/admin-register', [AuthController::class, 'adminRegister'])->name('admin.register');
     // Route::get('/admin-login-page', [AuthController::class, 'showAdminLogin'])->name('admin.login.page');

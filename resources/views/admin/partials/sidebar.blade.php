@@ -66,7 +66,7 @@
                       <!--begin:Menu item-->
                       <div class="menu-item">
                         <!--begin:Menu link-->
-                        <a class="menu-link" href="{{ route('admin.campaign-detail') }}">
+                        <a class="menu-link" href="#">
                           <span class="menu-bullet">
                             <span class="bullet bullet-dot"></span>
                           </span>
@@ -78,7 +78,7 @@
                       <!--begin:Menu item-->
                       <div class="menu-item">
                         <!--begin:Menu link-->
-                        <a class="menu-link" href="../../demo1/dist/dashboards/projects.html">
+                        <a class="menu-link" href=" {{ route('get-countries') }}">
                           <span class="menu-bullet">
                             <span class="bullet bullet-dot"></span>
                           </span>
