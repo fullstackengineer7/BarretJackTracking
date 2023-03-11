@@ -61,31 +61,10 @@ License: For each use you must have a valid license purchased only from above li
 
 					            <!--begin:Menu item-->
 					            <div data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-placement="bottom-start" class="menu-item menu-lg-down-accordion me-0 me-lg-2">
-					              	<a href="{{ route('client.home') }}">
 						              <span class="menu-link">
-						                <span class="menu-title" style="font-size:16px;">Home</span>
-						                <span class="menu-arrow d-lg-none"></span>
+						                <span class="menu-title">You're currently in your trial period. Add your credit card to keep your lead tracking and settings. <br>You won't be billed until your trial ends on Mar 25.</span>
 						              </span>
-						            </a>
-					            </div>
-					            <div data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-placement="bottom-start" class="menu-item menu-lg-down-accordion me-0 me-lg-2">
-					              	<a href="{{ route('client.activity') }}">
-						              <span class="menu-link">
-						                <span class="menu-title" style="font-size:16px;">Activity</span>
-						                <span class="menu-arrow d-lg-none"></span>
-						              </span>
-						            </a>
-					            </div>
-					            <div data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-placement="bottom-start" class="menu-item menu-lg-down-accordion me-0 me-lg-2">
-					              	<a href="{{ route('client.reports') }}">
-						              <span class="menu-link">
-						                <span class="menu-title" style="font-size:16px;">Reports</span>
-						                <span class="menu-arrow d-lg-none"></span>
-						              </span>
-						            </a>
-					            </div>
-					            <!--end:Menu item-->
-					            
+					            </div>					            
 					          </div>
 					          <!--end::Menu-->
 					        </div>
@@ -116,12 +95,12 @@ License: For each use you must have a valid license purchased only from above li
 										<ul class="nav nav-stretch nav-line-tabs nav-line-tabs-2x border-transparent fs-5 fw-bold">
 												<!--begin::Nav item-->
 												<li class="nav-item mt-2">
-													<a class="nav-link text-active-primary ms-0 me-10 py-5 active" href="{{ route('client.home') }}">Home</a>
+													<a class="nav-link text-active-primary ms-0 me-10 py-5" href="{{ route('client.home') }}">Home</a>
 												</li>
 												<!--end::Nav item-->
 												<!--begin::Nav item-->
 												<li class="nav-item mt-2">
-													<a class="nav-link text-active-primary ms-0 me-10 py-5 " href="{{ route('client.activity') }}">Activity</a>
+													<a class="nav-link text-active-primary ms-0 me-10 py-5 active" href="{{ route('client.activity') }}">Activity</a>
 												</li>
 												<!--end::Nav item-->
 												<!--begin::Nav item-->
@@ -136,10 +115,10 @@ License: For each use you must have a valid license purchased only from above li
 									<!--begin::Actions-->
 									<div class="d-flex align-items-center gap-2 gap-lg-3">
 										<!--begin::Secondary button-->
-										<a href="../../demo1/dist/apps/customers/view.html" class="btn btn-sm fw-bold bg-body btn-color-gray-700 btn-active-color-primary">Add Customer</a>
+										<a href="../../demo1/dist/apps/customers/view.html" class="btn btn-sm fw-bold bg-body btn-color-gray-700 btn-active-color-primary" style="font-size: 14px;">Add Credit Card</a>
 										<!--end::Secondary button-->
 										<!--begin::Primary button-->
-										<a href="{{ route('create-new-campaign') }}" class="btn btn-sm fw-bold btn-primary">New Campaign</a>
+										<a href="{{ route('create-new-campaign') }}" class="btn btn-sm fw-bold btn-primary" style="font-size: 14px;">New Campaign</a>
 										<!--end::Primary button-->
 									</div>
 									<!--end::Actions-->

@@ -5,6 +5,14 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\LeadController;
 use App\Http\Controllers\CampaignController;
 use App\Http\Controllers\BuyPhoneController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ActivityController;
+use App\Http\Controllers\ReportController;
+use App\Http\Controllers\TrackingController;
+use App\Http\Controllers\WorkflowController;
+use App\Http\Controllers\IntegrationsController;
+use App\Http\Controllers\AgentViewController;
+use App\Http\Controllers\TeamViewController;
 
 Route::get('/{path?}', function () {
     return view('admin/auth/sign-in');
@@ -20,7 +28,6 @@ Route::group(['prefix' => 'api'], function () {
     Route::get('/sign-out', [AuthController::class, 'signout'])->name('sign-out');
 
 
-    Route::get('/home', [CampaignController::class, 'index'])->name('home');
     Route::get('/admin/newlead', [LeadController::class, 'create'])->name('admin.create-new-lead');
     Route::get('/newcampaign', [CampaignController::class, 'create'])->name('create-new-campaign');
     Route::get('/admin/showcampaign', [CampaignController::class, 'show'])->name('admin.show-campaign');
@@ -29,6 +36,27 @@ Route::group(['prefix' => 'api'], function () {
     Route::get('/get-countries', [BuyPhoneController::class, 'getCountries'])->name('get-countries');
     Route::post('/store-campaign' , [CampaignController::class, 'store'])->name('store-campaign');
 
+    Route::get('/analytics', [HomeController::class, 'index'])->name('analytics');
+    Route::get('/home', [HomeController::class, 'home'])->name('client.home');
+    Route::get('/activity', [ActivityController::class, 'index'])->name('client.activity');
+    Route::get('/reports', [ReportController::class, 'index'])->name('client.reports');
+
+    Route::get('/tracking', [TrackingController::class, 'index'])->name('client.tracking');
+    Route::get('/workflow', [WorkflowController::class, 'index'])->name('client.workflow');
+    Route::get('/integrations', [IntegrationsController::class, 'index'])->name('client.integrations');
+
+    Route::get('/agentview', [AgentViewController::class, 'index'])->name('client.agent-view');
+    Route::get('/teamview', [TeamViewController::class, 'index'])->name('client.team-view');
+
+
+
+
+
+
+
+
+
+    
     // Route::get('/admin-signup', [AuthController::class, 'showAdminRegister'])->name('admin.signup');
     // Route::post('/admin-register', [AuthController::class, 'adminRegister'])->name('admin.register');
     // Route::get('/admin-login-page', [AuthController::class, 'showAdminLogin'])->name('admin.login.page');
